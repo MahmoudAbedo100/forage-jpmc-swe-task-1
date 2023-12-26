@@ -47,11 +47,20 @@ def getRatio(price_a, price_b):
         return price_a / price_b
 
 
+# Initialize N and QUERY here
+N = 10
+BASE_QUERY = "http://localhost:8080/query?id={}"
+
+
 # Main
 if __name__ == "__main__":
     # Query the price once every N seconds.
     for _ in range(N):
-        quotes = json.loads(urllib.request.urlopen(QUERY.format(random.random())).read())
+        # Generate a random ID for the query
+        random_id = random.random()
+        query = BASE_QUERY.format(random_id)
+
+        quotes = json.loads(urllib.request.urlopen(query).read())
 
         # Initialize prices dictionary
         prices = {}
@@ -65,7 +74,7 @@ if __name__ == "__main__":
 
         # Calculate and print the ratio for each stock
         for stock, price in prices.items():
-            ratio = getRatio(price, price)
+            ratio = getRatio(price, prices[stock])  # Use the correct prices for price_a and price_b
             print("Ratio for %s: %s" % (stock, ratio))
 
         # Sleep for a few seconds before the next iteration
