@@ -51,7 +51,6 @@ def getRatio(price_a, price_b):
 N = 10
 BASE_QUERY = "http://localhost:8080/query?id={}"
 
-
 # Main
 if __name__ == "__main__":
     # Query the price once every N seconds.
@@ -78,4 +77,4 @@ if __name__ == "__main__":
             print("Ratio for %s: %s" % (stock, ratio))
 
         # Sleep for a few seconds before the next iteration
-        time.sleep(5)  # Adjust the sleep duration as needed
+        time.sleep(5)  # Adjust the sleep duration
